@@ -230,32 +230,32 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == MOUSEBUTTONUP:
-                mouse_position = pygame.mpuse.get_pos()
-                show(mouse_position)
-                pygame.display.update()
-                if flag == 0:
-                    first_choice = mouse_position
-                    if recNumber(first_choice) in true_choices:
-                        flag = 0
-                    else:
-                        flag = 1
-
-                else:
-                    second_choice = mouse_position
-                    if recNumber(second_choice) in true_choices:
-                        flag = 1
-                    else:
-                        flag = 0
-                    if not (recNumber(first_choice) in true_choices) and not (recNumber(second_choice) in true_choices):
-                        if rightchoice(first_choice, second_choice):
-                            true_choices.append(recNumber(first_choice))
-                            true_choices.append(recNumber(second_choice))
-                        else:
-                            pygame.time.wait(1000)
-                            hide(first_choice)
-                            hode(second_choice)
-                            pygame.display.update()
+            # elif event.type == MOUSEBUTTONUP:
+            #     mouse_position = pygame.mpuse.get_pos()
+            #     show(mouse_position)
+            #     pygame.display.update()
+            #     if flag == 0:
+            #         first_choice = mouse_position
+            #         if recNumber(first_choice) in true_choices:
+            #             flag = 0
+            #         else:
+            #             flag = 1
+            #
+            #     else:
+            #         second_choice = mouse_position
+            #         if recNumber(second_choice) in true_choices:
+            #             flag = 1
+            #         else:
+            #             flag = 0
+            #         if not (recNumber(first_choice) in true_choices) and not (recNumber(second_choice) in true_choices):
+            #             if rightchoice(first_choice, second_choice):
+            #                 true_choices.append(recNumber(first_choice))
+            #                 true_choices.append(recNumber(second_choice))
+            #             else:
+            #                 pygame.time.wait(1000)
+            #                 hide(first_choice)
+            #                 hide(second_choice)
+            #                 pygame.display.update()
 
 if __name__ == "__main__":
     main()
