@@ -2,6 +2,8 @@ import pygame, sys
 from pygame.locals import *
 import random
 
+shapes_arrangement = []
+
 rectangles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 Rectangle1 = Rect(0, 0, 100, 100)
@@ -133,41 +135,6 @@ def drawTriShapes(x, color):
         pygame.draw.polygon(Window, color, ((310, 320), (390, 320), (350, 380)))
 
 
-def drawDiamShapes(x, color):
-    if x == 1:
-        pygame.draw.polygon(Window, color, ((10, 50), (50, 20), (90, 50), (50, 80)))
-    elif x == 2:
-        pygame.draw.polygon(Window, color, ((110, 50), (150, 20), (190, 50), (150, 80)))
-    elif x == 3:
-        pygame.draw.polygon(Window, color, ((210, 50), (250, 20), (290, 50), (250, 80)))
-    elif x == 4:
-        pygame.draw.polygon(Window, color, ((310, 50), (350, 20), (390, 50), (350, 80)))
-    elif x == 5:
-        pygame.draw.polygon(Window, color, ((10, 150), (50, 120), (90, 150), (50, 180)))
-    elif x == 6:
-        pygame.draw.polygon(Window, color, ((110, 150), (150, 120), (190, 150), (150, 180)))
-    elif x == 7:
-        pygame.draw.polygon(Window, color, ((210, 150), (250, 120), (290, 150), (250, 180)))
-    elif x == 8:
-        pygame.draw.polygon(Window, color, ((310, 150), (350, 120), (390, 150), (350, 180)))
-    elif x == 9:
-        pygame.draw.polygon(Window, color, ((10, 250), (50, 220), (90, 250), (50, 280)))
-    elif x == 10:
-        pygame.draw.polygon(Window, color, ((110, 250), (150, 220), (190, 250), (150, 280)))
-    elif x == 11:
-        pygame.draw.polygon(Window, color, ((210, 250), (250, 220), (290, 250), (250, 280)))
-    elif x == 12:
-        pygame.draw.polygon(Window, color, ((310, 250), (350, 220), (390, 250), (350, 280)))
-    elif x == 13:
-        pygame.draw.polygon(Window, color, ((10, 350), (50, 320), (90, 350), (50, 380)))
-    elif x == 14:
-        pygame.draw.polygon(Window, color, ((110, 350), (150, 320), (190, 350), (150, 380)))
-    elif x == 15:
-        pygame.draw.polygon(Window, color, ((210, 350), (250, 320), (290, 350), (250, 380)))
-    elif x == 16:
-        pygame.draw.polygon(Window, color, ((310, 350), (350, 320), (390, 350), (350, 380)))
-
-
 def startGame():
     for i in range(4):
         if i == 0 or i == 1:
@@ -175,6 +142,7 @@ def startGame():
         else:
             color = (0, 255, 0)
         x = random.choice(rectangles)
+        shapes_arrangement.append(x)
         drawRecShapes(x, color)
         rectangles.remove(x)
     for i in range(4):
@@ -183,6 +151,7 @@ def startGame():
         else:
             color = (0, 255, 255)
         x = random.choice(rectangles)
+        shapes_arrangement.append(x)
         drawCirShapes(x, color)
         rectangles.remove(x)
     for i in range(4):
@@ -191,16 +160,65 @@ def startGame():
         else:
             color = (128, 0, 0)
         x = random.choice(rectangles)
+        shapes_arrangement.append(x)
         drawTriShapes(x, color)
         rectangles.remove(x)
-    # for i in range(4):
-    #     if i == 0 or i == 1:
-    #         color = (128, 128, 0)
-    #     else:
-    #         color = (128, 0, 128)
-    #     x = random.choice(rectangles)
-    #     drawDiamShapes(x, color)
-    #     rectangles.remove(x)
+
+
+def right_choice(first_choice, second_choice):
+    x = shape_index(first_choice)
+    y = shape_index(second_choice)
+    if (x == 0 and y == 1 or x == 1 and y == 0) \
+            or (x == 2 and y == 3 or x == 3 and y == 2) \
+            or (x == 4 and y == 5 or x == 5 and y == 4) \
+            or (x == 6 and y == 7 or x == 7 and y == 6) \
+            or (x == 8 and y == 9 or x == 9 and y == 8) \
+            or (x == 10 and y == 11 or x == 11 and y == 10) \
+            or (x == 12 and y == 13 or x == 13 and y == 12) \
+            or (x == 14 and y == 15 or x == 15 and y == 14):
+        return True
+
+
+def shape_index(mouse_position):
+    for i in range(12):
+        if RectangleObjects[i].collidepoint(mouse_position):
+            return shapes_arrangement.index(i + 1)
+
+
+def rec_number(mouse_position):
+    for i in range(12):
+        if RectangleObjects[i].collidepoint(mouse_position):
+            return i + 1
+
+
+def hide(mouse_position):
+    rectangle_number = rec_number(mouse_position)
+    for i in range(12):
+        if rectangle_number == i + 1:
+            pygame.draw.rect(Window, (255, 255, 255), RectangleObjects[i].inflate(-10, -10))
+
+
+def show(mouse_position):
+    rectangle_number = rec_number(mouse_position)
+    shapeindex = shape_index(mouse_position)
+    if shapeindex == 0 or shapeindex == 1:
+        color = (0, 0, 255)
+        drawRecShapes(rectangle_number, color)
+    elif shapeindex == 2 or shapeindex == 3:
+        color = (0, 255, 0)
+        drawRecShapes(rectangle_number, color)
+    elif shapeindex == 4 or shapeindex == 5:
+        color = (255, 255, 0)
+        drawCirShapes(rectangle_number, color)
+    elif shapeindex == 6 or shapeindex == 7:
+        color = (0, 255, 255)
+        drawCirShapes(rectangle_number, color)
+    elif shapeindex == 8 or shapeindex == 9:
+        color = (255, 0, 255)
+        drawTriShapes(rectangle_number, color)
+    elif shapeindex == 10 or shapeindex == 11:
+        color = (128, 0, 0)
+        drawTriShapes(rectangle_number, color)
 
 
 def main():
@@ -230,32 +248,34 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            # elif event.type == MOUSEBUTTONUP:
-            #     mouse_position = pygame.mpuse.get_pos()
-            #     show(mouse_position)
-            #     pygame.display.update()
-            #     if flag == 0:
-            #         first_choice = mouse_position
-            #         if recNumber(first_choice) in true_choices:
-            #             flag = 0
-            #         else:
-            #             flag = 1
-            #
-            #     else:
-            #         second_choice = mouse_position
-            #         if recNumber(second_choice) in true_choices:
-            #             flag = 1
-            #         else:
-            #             flag = 0
-            #         if not (recNumber(first_choice) in true_choices) and not (recNumber(second_choice) in true_choices):
-            #             if rightchoice(first_choice, second_choice):
-            #                 true_choices.append(recNumber(first_choice))
-            #                 true_choices.append(recNumber(second_choice))
-            #             else:
-            #                 pygame.time.wait(1000)
-            #                 hide(first_choice)
-            #                 hide(second_choice)
-            #                 pygame.display.update()
+            elif event.type == MOUSEBUTTONUP:
+                mouse_position = pygame.mouse.get_pos()
+                show(mouse_position)
+                pygame.display.update()
+                if flag == 0:
+                    first_choice = mouse_position
+                    if rec_number(first_choice) in true_choices:
+                        flag = 0
+                    else:
+                        flag = 1
+
+                else:
+                    second_choice = mouse_position
+                    if rec_number(second_choice) in true_choices:
+                        flag = 1
+                    else:
+                        flag = 0
+                    if not (rec_number(first_choice) in true_choices) and not (
+                            rec_number(second_choice) in true_choices):
+                        if right_choice(first_choice, second_choice):
+                            true_choices.append(rec_number(first_choice))
+                            true_choices.append(rec_number(second_choice))
+                        else:
+                            pygame.time.wait(1000)
+                            hide(first_choice)
+                            hide(second_choice)
+                            pygame.display.update()
+
 
 if __name__ == "__main__":
     main()
