@@ -25,12 +25,12 @@ RectangleObjects = (
     Rectangle11, Rectangle12)
 
 
-def drawBackground():
+def draw_background():
     for i in range(12):
         pygame.draw.rect(Window, (51, 204, 204), RectangleObjects[i], 10)
 
 
-def drawRecShapes(x, color):
+def draw_rec_shapes(x, color):
     if x == 1:
         pygame.draw.rect(Window, color, Rect(20, 20, 60, 60))
     elif x == 2:
@@ -55,14 +55,34 @@ def drawRecShapes(x, color):
         pygame.draw.rect(Window, color, Rect(220, 220, 60, 60))
     elif x == 12:
         pygame.draw.rect(Window, color, Rect(320, 220, 60, 60))
-    elif x == 13:
-        pygame.draw.rect(Window, color, Rect(20, 320, 60, 60))
-    elif x == 14:
-        pygame.draw.rect(Window, color, Rect(120, 320, 60, 60))
-    elif x == 15:
-        pygame.draw.rect(Window, color, Rect(220, 320, 60, 60))
-    elif x == 16:
-        pygame.draw.rect(Window, color, Rect(320, 320, 60, 60))
+
+
+def draw_image(x, image):
+    if x == 1:
+        Window.blit(image, (5, 5))
+        # pygame.draw.rect(Window, color, Rect(20, 20, 60, 60))
+    elif x == 2:
+        Window.blit(image, (105, 5))
+    elif x == 3:
+        Window.blit(image, (205, 5))
+    elif x == 4:
+        Window.blit(image, (305, 5))
+    elif x == 5:
+        Window.blit(image, (5, 105))
+    elif x == 6:
+        Window.blit(image, (105, 105))
+    elif x == 7:
+        Window.blit(image, (205, 105))
+    elif x == 8:
+        Window.blit(image, (305, 105))
+    elif x == 9:
+        Window.blit(image, (5, 205))
+    elif x == 10:
+        Window.blit(image, (105, 205))
+    elif x == 11:
+        Window.blit(image, (205, 205))
+    elif x == 12:
+        Window.blit(image, (305, 205))
 
 
 def drawCirShapes(x, color):
@@ -135,15 +155,25 @@ def drawTriShapes(x, color):
         pygame.draw.polygon(Window, color, ((310, 320), (390, 320), (350, 380)))
 
 
-def startGame():
+def start_game():
+    rect = False
     for i in range(4):
-        if i == 0 or i == 1:
-            color = (0, 0, 255)
+        if i == 0:
+            # color = (0, 0, 255)
+            image = pygame.image.load('images/cell1.jpeg')
+            rect = False
+        elif i == 1:
+            image = pygame.image.load('images/cell2.jpeg')
+            rect = False
         else:
             color = (0, 255, 0)
+            rect = True
         x = random.choice(rectangles)
         shapes_arrangement.append(x)
-        drawRecShapes(x, color)
+        if rect:
+            draw_rec_shapes(x, color)
+        else:
+            draw_image(x, image)
         rectangles.remove(x)
     for i in range(4):
         if i == 0 or i == 1:
@@ -201,12 +231,15 @@ def hide(mouse_position):
 def show(mouse_position):
     rectangle_number = rec_number(mouse_position)
     shapeindex = shape_index(mouse_position)
-    if shapeindex == 0 or shapeindex == 1:
-        color = (0, 0, 255)
-        drawRecShapes(rectangle_number, color)
+    if shapeindex == 0:
+        image = pygame.image.load('images/cell1.jpeg')
+        draw_image(rectangle_number, image)
+    elif shapeindex == 1:
+        image = pygame.image.load('images/cell2.jpeg')
+        draw_image(rectangle_number, image)
     elif shapeindex == 2 or shapeindex == 3:
         color = (0, 255, 0)
-        drawRecShapes(rectangle_number, color)
+        draw_rec_shapes(rectangle_number, color)
     elif shapeindex == 4 or shapeindex == 5:
         color = (255, 255, 0)
         drawCirShapes(rectangle_number, color)
@@ -228,17 +261,13 @@ def main():
     Window.fill((255, 255, 255))
     pygame.display.set_caption('Memory Game')
 
-    drawBackground()
-    startGame()
+    draw_background()
+    start_game()
 
-    # pygame.draw.circle(Window, (255, 255, 0), (50, 50), 30)
-    # pygame.draw.polygon(Window, (255, 0, 255), ((110, 20), (190, 20), (150, 80)))
-    # pygame.draw.polygon(Window, (0, 255, 0), ((210, 50), (250, 20), (290, 50), (250, 80)))
-    # drawRecShapes(11, (0, 0, 0))
     pygame.display.update()
     pygame.time.wait(3000)
     Window.fill((255, 255, 255))
-    drawBackground()
+    draw_background()
     pygame.display.update()
     flag = 0
     true_choices = []
@@ -277,12 +306,13 @@ def main():
                             pygame.display.update()
 
         if len(true_choices) == 12:
+            image = pygame.image.load('task5.png')
+            Window.blit(image, (0, 0))
             Font1 = pygame.font.SysFont('arial', 22, True, True)
             text_surface = Font1.render('You did it!', True, (0, 0, 0))
             Window.blit(text_surface, (20, 150))
-            image = pygame.image.load('task5.png')
-            Window.blit(image, (0, 0))
             pygame.display.update()
+
 
 if __name__ == "__main__":
     main()
