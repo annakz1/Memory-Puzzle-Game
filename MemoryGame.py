@@ -276,6 +276,13 @@ def main():
                             hide(second_choice)
                             pygame.display.update()
 
+        if len(true_choices) == 12:
+            Font1 = pygame.font.SysFont('arial', 22, True, True)
+            text_surface = Font1.render('You did it!', True, (0, 0, 0))
+            Window.blit(text_surface, (20, 150))
+            image = pygame.image.load('task5.png')
+            Window.blit(image, (0, 0))
+            pygame.display.update()
 
 if __name__ == "__main__":
     main()
