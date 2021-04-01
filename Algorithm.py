@@ -15,7 +15,6 @@ def imagesBW(imageList):
     images_BW = []
     for imageName in imageList:
         imagePath = "data/images/" + str(imageName)
-        # print(imagePath)
         images_BW.append(imageResize(cv2.imread(imagePath, 0)))
     return images_BW
 
@@ -254,16 +253,6 @@ def find_best_pairs(imageList):
 
 
 #### MAIN
-
-# removeOldResults()
-
-
-# imageList = ["phone1.jpeg", "phone2.jpeg", "hand1.jpeg",
-#              "hand2.jpeg", "remote1.jpeg", "remote2.jpeg",
-#              "puzzle2.jpeg", "puzzle1.jpeg", "doh2.jpeg", "doh1.jpeg", "book_ru2.jpeg",
-#              "book_ru1.jpeg"]  # ,"taj1.jpeg","taj2.jpeg","eiffel1.jpeg",
-# "eiffel2.jpeg","liberty1.jpeg","liberty2.jpeg",
-# "ironman1.jpeg","ironman2.jpeg"]#,"darkknight1.jpeg","darkknight2.jpeg","book1.jpeg","book2.jpeg"]
 
 keypoints_descriptors(imageList)
 scores = scores_matrix(imageList)

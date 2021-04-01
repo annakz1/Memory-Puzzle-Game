@@ -48,7 +48,7 @@
         <li><a href="#Price">Price</a></li>
         <li><a href="#About">About</a></li>
         <li><a href="#Testimonial">Testimonial</a></li>
-        <li><a href="#" id=game><button>Button</<button></a></li>
+        <li><a href="#"><button>Button</<button></a></li>
       </ul>
     </div><!-- End navbar-collapse -->
   </div><!-- End container -->
@@ -57,27 +57,25 @@
 <div class="container wow bounceInDown" data-wow-duration="5s">
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8 text-center slide-text">
-			<h1>Awesome Template</h1>
+			<h1>Memory Game with<br>Auto-detection</h1>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting</p>
 		
 		
-		<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<div class="file-upload">
-		  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
-
-		  <div class="image-upload-wrap">
-			<input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-			<div class="drag-text">
-			  <h3>Drag and drop a file or select add Image</h3>
-			</div>
-		  </div>
-		  <div class="file-upload-content">
-			<img class="file-upload-image" src="#" alt="your image" />
-			<div class="image-title-wrap">
-			  <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-			</div>
-		  </div>
-		</div>
+		<!-- UPLOAD Files-->
+			<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+			
+			 <dl>
+				<p>
+					<input type="file" id="multiFiles" name="files[]" multiple="multiple" onchange="readURL(this);"/>
+					<p id="msg" style="color:gray;"></p>
+					<button class="file-upload-btn" id="upload">Upload</button>
+					
+				</p>
+			</dl>
+			
+			<button type="button" id='algo'>Run the Algorithm</button>
+			<br>
+			<button type="button" id='game' class="file-game-btn">Start the Game!</button>
 		</div><!-- End col-md-8-->
 				
 		<div class="col-md-offset-2"></div><!-- End col-md-offset-2 -->
@@ -162,165 +160,6 @@
 
 <!-- End Feature -->
 
-
-<!-- Services -->
-
-<div class="container" id="Services">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="main_heading">
-				<h1>Services</h1>
-				<div  class="text-center"><span class="underline"></span></div>
-			</div>
-		</div><!-- End col-md-12 -->
-	</div><!-- End row -->
-
-	<div class="col-md-4 services-box-gray col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-support"></i>
-			<h4>24/7 Support</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-	<div class="col-md-4 col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-rocket"></i>
-			<h4>Quick Install</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-	<div class="col-md-4 services-box-gray col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-cogs"></i>
-			<h4>Easy to Customize</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-	<div class="col-md-4 col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-magic"></i>
-			<h4>Another Feature</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-	<div class="col-md-4 services-box-gray col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-support"></i>
-			<h4>24/7 Support</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-	<div class="col-md-4 col-sm-6">
-		<div class="services-box">
-			<i class="fa fa-rocket"></i>
-			<h4>Quick Install</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-		</div>
-	</div><!-- End col-md-4-->
-
-
-</div><!-- End container -->
-
-<!-- End Services -->
-
-<!-- Call to Action -->
-<div class="call-action-bg" id="Call-to-Action">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="main_heading">
-					<h1>Call to Action</h1>
-					<div  class="text-center"><span class="underline"></span></div>
-				</div>
-			</div><!-- End col-md-12 -->
-		</div><!-- End row -->
-
-		<div class="col-md-12">
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-		</div><!-- End col-md-12-->
-
-	</div><!-- End container -->	
-</div>
-
-<!-- End Call to Action -->
-
-<!-- Price Table -->
-
-<div class="container" id="Price">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="main_heading">
-				<h1>Price Table</h1>
-				<div  class="text-center"><span class="underline"></span></div>
-			</div>
-		</div><!-- End col-md-12 -->
-	</div><!-- End row -->
-
-	<div class="row">
-		<div class="col-md-4">
-			<div class="pricing-box">
-				<div class="pricing-box-price"><span>$ </span><strong>12</strong><span> / month</span></div>
-			    <h3>Basic</h3>
-			    <h4>Freelancer</h4>
-			    <div class="pricing-box-features">
-			    	<ul>
-			    		<li>1000 video lessons</li>
-			    		<li>Normal speed</li>
-			    		<li>500 solved exercises</li>
-			    		<li>300MB to save your code</li>
-			    		<li>750 hours of support</li>
-			    	</ul>
-			    </div>
-			    <div class="pricing-box-sign-up">
-			    	<a class="btn btn-link-1 scroll-link" href="#top-content">Sign up</a>
-			    </div>
-			</div>
-		</div><!-- End col-dm-4 -->
-		<div class="col-md-4 pricing-box-best">
-			<div class="pricing-box">
-            	<div class="pricing-box-price">
-            		<span>$ </span><strong>35</strong><span> / month</span>
-            	</div>
-                <h3>Ultimate</h3>
-                <h4>Best value</h4>
-                <div class="pricing-box-features">
-                	<ul>
-                		<li>3000 video lessons</li>
-                		<li>2x speed</li>
-                		<li>2000 solved exercises</li>
-                		<li>500MB to save your code</li>
-                		<li>900 hours of support</li>
-                	</ul>
-                </div>
-                <div class="pricing-box-sign-up">
-                	<a class="btn btn-link-1 scroll-link" href="#top-content">Sign up</a>
-                </div>
-            </div>
-		</div><!-- End col-dm-4 -->
-		<div class="col-md-4">
-			<div class="pricing-box">
-            	<div class="pricing-box-price"><span>$ </span><strong>75</strong><span> / month</span></div>
-                <h3>Platinum</h3>
-                <h4>Big company</h4>
-                <div class="pricing-box-features">
-                	<ul>
-                		<li>5000 video lessons</li>
-                		<li>4x speed</li>
-                		<li>4000 solved exercises</li>
-                		<li>900MB to save your code</li>
-                		<li>Unlimited hours of support</li>
-                	</ul>
-                </div>
-                <div class="pricing-box-sign-up">
-                	<a class="btn btn-link-1 scroll-link" href="#top-content">Sign up</a>
-                </div>
-            </div>
-		</div><!-- End col-dm-4 -->
-	</div><!-- End row -->
-
-</div><!-- End container -->
-
-<!-- End Price Table -->
 
 <!-- About -->
 <div class="container" id="About">
@@ -414,7 +253,8 @@
 <script type="text/javascript" src="static/js/jquery-main.js"></script>
 <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
 <script src="static/js/wow.min.js"></script>
-<script src="static/js/myFunctions.js"></script>
+<script src="static/js/addedFunctions.js"></script>
+<script src="static/js/algoGameFunctions.js"></script>
 
 <script>
 	new WOW().init();
