@@ -3,14 +3,28 @@ $(function(){
     $("#game").click(function(){
         $.ajax({
             url: '/runGame',
-            data: json,
             type: 'POST',
-            success: function(response){
-                document.getElementById('result').innerHTML = response
-            },
-            error: function(error){
-                $("#result").text(error);
-            }
+            success: function(){
+			}
+        });
+    });
+});
+
+$(function(){
+    $("#algo").click(function(){
+        $.ajax({
+            url: '/runAlgorithm',
+            type: 'POST',
+            success: function (response) { // display success response
+				$('#msgAlgo').html('');
+				$.each(response, function (key, data) {							
+					if(key !== 'message') {
+						$('#msgAlgo').append(key + ' -> ' + data + '<br/>');
+					} else {
+						$('#msgAlgo').append(data + '<br/>');
+					}
+				})
+			},
         });
     });
 });
