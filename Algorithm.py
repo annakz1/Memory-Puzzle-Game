@@ -3,8 +3,7 @@ import pickle
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import glob
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageDraw
 
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -125,9 +124,8 @@ class Algorithm:
         plot = self.getPlotFor(i, j, keypoint1, keypoint2, matches)
         return score, plot
 
-    def showplot(self, plot):
-        pass
-        # plt.imshow(plot), plt.show()
+    def showplot(plot):
+        plt.imshow(plot), plt.show()
 
     def getPlotFor(self, i, j, keypoint1, keypoint2, matches):
         image1_path = os.path.join(FILE_DIR, "WEB-app\data\images\\" + imageList[i])
@@ -146,11 +144,37 @@ class Algorithm:
     def pairOutput(self, i, j, pair_num):
         image1 = self.changeImageSize(i)
         image2 = self.changeImageSize(j)
-        self.showplot(image1)
-        self.showplot(image2)
-        image1.save(os.path.join(FILE_DIR, "WEB-app\data\\results\pair" + str(pair_num) + "_1.jpeg"))
-        image2.save(os.path.join(FILE_DIR, "WEB-app\data\\results\pair" + str(pair_num) + "_2.jpeg"))
-        return image1, image2
+
+        image1_name = os.path.join(FILE_DIR, "WEB-app\data\\results\pair" + str(pair_num) + "_1.jpeg")
+        image2_name = os.path.join(FILE_DIR, "WEB-app\data\\results\pair" + str(pair_num) + "_2.jpeg")
+
+        image1.save(image1_name)
+        image2.save(image2_name)
+
+        image1_open = Image.open(image1_name)
+        image2_open = Image.open(image2_name)
+        number_text = str(pair_num)
+        black = 'rgb(0, 0, 0)'  # black color
+        image_editable = ImageDraw.Draw(image1_open)
+        image_editable.text((14, 14), number_text, fill=black)
+        image_editable.text((14, 16), number_text, fill=black)
+        image_editable.text((16, 14), number_text, fill=black)
+        image_editable.text((16, 16), number_text, fill=black)
+        image_editable.text((15, 15), number_text)
+        image1_open.save(image1_name)
+
+        image_editable = ImageDraw.Draw(image2_open)
+        image_editable.text((14, 14), number_text, fill=black)
+        image_editable.text((14, 16), number_text, fill=black)
+        image_editable.text((16, 14), number_text, fill=black)
+        image_editable.text((16, 16), number_text, fill=black)
+        image_editable.text((15, 15), number_text)
+        image2_open.save(image2_name)
+
+        # self.showplot(image1_open)
+        # self.showplot(image2_open)
+
+        return (image1, image2)
 
     #  matching descriptors by knn
     def calculateMatches(self, des1, des2):
@@ -244,5 +268,5 @@ class Algorithm:
                 for pair_num, pair in enumerate(combination):
                     score, plot = self.calculateResultsFor(pair[0], pair[1])
                     print("score: ", score)
-                    self.showplot(plot)
+                    # self.showplot(plot)
                     self.pairOutput(pair[0], pair[1], pair_num)

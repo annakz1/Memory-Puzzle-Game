@@ -48,14 +48,6 @@ body
     margin-top: 5px;
 }
 
-.navbar-nav li:nth-last-child(1) a
-{
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid #fff;
-    border-radius: 4px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
 
 .top-right-menu-ul
 {

@@ -5,8 +5,7 @@ from werkzeug.utils import secure_filename
 from Algorithm import Algorithm
 from MemoryGame import MemoryGame
 
-
-FILE_DIR = os.path.dirname(os.path.abspath(__file__)) # absolute path to this file
+FILE_DIR = os.path.dirname(os.path.abspath(__file__))  # absolute path to this file
 UPLOAD_FOLDER = os.path.join(FILE_DIR, 'data\images')
 DESCRIPTORS_FOLDER = os.path.join(FILE_DIR, 'data\descriptors')
 KEYPOINTS_FOLDER = os.path.join(FILE_DIR, 'data\keypoints')
@@ -47,11 +46,13 @@ def upload_file():
     for f in os.listdir(app.config['UPLOAD_FOLDER']):
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], f))
 
+    i = 1
     for file in files:
         print("saving to folder: " + app.config['UPLOAD_FOLDER'])
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = "img" + str(i) + ".jpeg"  # secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            i += 1
             success = True
         else:
             errors[file.filename] = 'File type is not allowed'

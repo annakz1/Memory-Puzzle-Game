@@ -35,4 +35,5 @@ $(function(){
 
 function emptyMsg() {
 	$('#msg').html('<span></span>')
+	$('#msgAlgo').html('<span></span>')
 }
