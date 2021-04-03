@@ -12,6 +12,7 @@ $(function(){
 
 $(function(){
     $("#algo").click(function(){
+		$('#msgAlgo').html('<span style="color:blue">Please wait until the algorithm completes</span>');
         $.ajax({
             url: '/runAlgorithm',
             type: 'POST',
@@ -25,6 +26,13 @@ $(function(){
 					}
 				})
 			},
+			error: function (response) {
+				$('#msgAlgo').html(response.message); // display error response
+			}
         });
     });
 });
+
+function emptyMsg() {
+	$('#msg').html('<span></span>')
+}

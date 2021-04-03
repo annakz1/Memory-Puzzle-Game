@@ -2,8 +2,10 @@ import cv2
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image
 import os
+import glob
+from PIL import Image, ImageFont, ImageDraw
+
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -124,7 +126,8 @@ class Algorithm:
         return score, plot
 
     def showplot(self, plot):
-        plt.imshow(plot), plt.show()
+        pass
+        # plt.imshow(plot), plt.show()
 
     def getPlotFor(self, i, j, keypoint1, keypoint2, matches):
         image1_path = os.path.join(FILE_DIR, "WEB-app\data\images\\" + imageList[i])

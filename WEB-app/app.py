@@ -91,7 +91,6 @@ def run_algorithm():
 
 @app.route('/runGame', methods=['GET', 'POST'])
 def run_game():
-    print("in Run Game")
     memory_game = MemoryGame()
     memory_game.run_game()
 
