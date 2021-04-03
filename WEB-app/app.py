@@ -5,8 +5,8 @@ from werkzeug.utils import secure_filename
 from Algorithm import Algorithm
 from MemoryGame import MemoryGame
 
-# absolute path to this file
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+FILE_DIR = os.path.dirname(os.path.abspath(__file__)) # absolute path to this file
 UPLOAD_FOLDER = os.path.join(FILE_DIR, 'data\images')
 DESCRIPTORS_FOLDER = os.path.join(FILE_DIR, 'data\descriptors')
 KEYPOINTS_FOLDER = os.path.join(FILE_DIR, 'data\keypoints')
@@ -73,7 +73,7 @@ def upload_file():
 
 @app.route('/runAlgorithm', methods=['GET', 'POST'])
 def run_algorithm():
-    # empty the Descriptors, keypoints and results folders first
+    # empty the Descriptors, Keypoints and Results folders first
     for f in os.listdir(app.config['DESCRIPTORS_FOLDER']):
         os.remove(os.path.join(app.config['DESCRIPTORS_FOLDER'], f))
     for f in os.listdir(app.config['KEYPOINTS_FOLDER']):
