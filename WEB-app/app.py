@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, jsonify
 from flask import request
-from werkzeug.utils import secure_filename
 from Algorithm import Algorithm
 from MemoryGame import MemoryGame
 
@@ -10,7 +9,7 @@ UPLOAD_FOLDER = os.path.join(FILE_DIR, 'data\images')
 DESCRIPTORS_FOLDER = os.path.join(FILE_DIR, 'data\descriptors')
 KEYPOINTS_FOLDER = os.path.join(FILE_DIR, 'data\keypoints')
 RESULTS_FOLDER = os.path.join(FILE_DIR, 'data\\results')
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -46,9 +45,9 @@ def upload_file():
     for f in os.listdir(app.config['UPLOAD_FOLDER']):
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], f))
 
+    print("saving to folder: " + app.config['UPLOAD_FOLDER'])
     i = 1
     for file in files:
-        print("saving to folder: " + app.config['UPLOAD_FOLDER'])
         if file and allowed_file(file.filename):
             filename = "img" + str(i) + ".jpeg"  # secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
